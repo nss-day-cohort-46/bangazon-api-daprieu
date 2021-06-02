@@ -1,13 +1,15 @@
+
 SELECT
-                    c.id,
-                    u.first_name || ' ' || u.last_name AS customer_name,
-                    f.seller_id AS Favortie_seller,
-                    fs.first_name || ' ' || fs.last_name AS fav_seller_name
-                FROM
-                    bangazonapi_customer c
-                JOIN
-                    bangazonapi_favorite f ON f.customer_id = c.id
-                JOIN
-                    auth_user u ON c.id = u.id
-                Join 
-                    auth_user fs ON f.seller_id = fs.id
+    c.*,
+    cus.first_name || ' ' || cus.last_name AS customer,
+    r.product_id,
+    r.recommender_id,
+    rs.first_name || ' ' || rs.last_name AS recommender
+FROM
+    bangazonapi_customer c
+JOIN 
+    bangazonapi_recommendation r ON r.customer_id = c.id
+JOIN 
+    auth_user rs ON rs.id = r.customer_id
+JOIN 
+    auth_user cus ON cus.id = c.user_id
