@@ -61,22 +61,24 @@ class LineItems(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
-        """
-        @api {DELETE} /cart/:id DELETE line item from cart
-        @apiName RemoveLineItem
-        @apiGroup ShoppingCart
+        if request.method == "DELETE":
+            """
+            @api {DELETE} /cart/:id DELETE line item from cart
+            @apiName RemoveLineItem
+            @apiGroup ShoppingCart
 
-        @apiHeader {String} Authorization Auth token
-        @apiHeaderExample {String} Authorization
-            Token 9ba45f09651c5b0c404f37a2d2572c026c146611
+            @apiHeader {String} Authorization Auth token
+            @apiHeaderExample {String} Authorization
+                Token 9ba45f09651c5b0c404f37a2d2572c026c146611
 
-        @apiParam {id} id Product Id to remove from cart
-        @apiSuccessExample {json} Success
-            HTTP/1.1 204 No Content
-        """
+            @apiParam {id} id Product Id to remove from cart
+            @apiSuccessExample {json} Success
+                HTTP/1.1 204 No Content
+            """
         try:
             customer = Customer.objects.get(user=request.auth.user)
             order_product = OrderProduct.objects.get(pk=pk, order__customer=customer)
+            order_product.delete()
 
             return Response({}, status=status.HTTP_204_NO_CONTENT)
 
