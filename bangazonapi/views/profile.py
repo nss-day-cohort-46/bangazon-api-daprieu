@@ -81,6 +81,8 @@ class Profile(ViewSet):
             }
         """
         try:
+            # Bellow I changed 'user__id=4' to 'user=request.auth.user' 
+            # to return the current logged in Customer
             current_user = Customer.objects.get(user=request.auth.user)
             current_user.recommends = Recommendation.objects.filter(recommender=current_user)
             current_user.recommended = Recommendation.objects.filter(customer=current_user)
