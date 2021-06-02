@@ -45,7 +45,7 @@ def customerFavorite_list(request):
                 # If the user's id is already a key in the dictionary...
                 if uid in favorite_seller_by_customer:
 
-                    # Add the current game to the `games` list for it
+                    # Add the current seller to the `sellers` list for it
                     favorite_seller_by_customer[uid]['seller'].append(favorite)
 
                 else:
