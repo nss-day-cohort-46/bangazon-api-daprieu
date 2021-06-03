@@ -61,7 +61,6 @@ class LineItems(ViewSet):
             return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
     def destroy(self, request, pk=None):
-        if request.method == "DELETE":
             """
             @api {DELETE} /cart/:id DELETE line item from cart
             @apiName RemoveLineItem
@@ -75,15 +74,16 @@ class LineItems(ViewSet):
             @apiSuccessExample {json} Success
                 HTTP/1.1 204 No Content
             """
-        try:
-            customer = Customer.objects.get(user=request.auth.user)
-            order_product = OrderProduct.objects.get(pk=pk, order__customer=customer)
-            order_product.delete()
+            if request.method == "DELETE":
+                try:
+                    customer = Customer.objects.get(user=request.auth.user)
+                    order_product = OrderProduct.objects.get(pk=pk, order__customer=customer)
+                    order_product.delete()
 
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
+                    return Response({}, status=status.HTTP_204_NO_CONTENT)
 
-        except OrderProduct.DoesNotExist as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
+                except OrderProduct.DoesNotExist as ex:
+                    return Response({'message': ex.args[0]}, status=status.HTTP_404_NOT_FOUND)
 
-        except Exception as ex:
-            return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+                except Exception as ex:
+                    return Response({'message': ex.args[0]}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
