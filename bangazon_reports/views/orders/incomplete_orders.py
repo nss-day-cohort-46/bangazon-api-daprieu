@@ -1,8 +1,6 @@
 from bangazonapi.models.order import Order
-from bangazonapi.models.customer import Customer
 import sqlite3
 from django.shortcuts import render
-from bangazonapi.models import Favorite
 from bangazon_reports.views import Connection
 
 
@@ -14,7 +12,7 @@ def incompleteOrders_list(request):
             conn.row_factory = sqlite3.Row
             db_cursor = conn.cursor()
 
-            # Query for all games, with related user info.
+            # Query for all orders, with related product info.
             db_cursor.execute("""
                 SELECT
                     o.id ,

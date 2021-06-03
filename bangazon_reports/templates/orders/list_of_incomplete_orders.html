@@ -11,14 +11,12 @@
     {% for orders in incompleteOrders_list %}
         <h2>Order ID: {{ orders.id }}</h2>
         <ol>
-            {% comment %} {% for order_detail in orders %} {% endcomment %}
             <li>
                 Customer: {{orders.customer}}
             </li>    
             <li>    
                 Incomplete Order Price: {{ orders.total}}
             </li>
-            {% comment %} {% endfor %} {% endcomment %}
         </ol>
     {% endfor %}
   </body>
