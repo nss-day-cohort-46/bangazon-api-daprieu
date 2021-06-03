@@ -35,7 +35,7 @@ def customerFavorite_list(request):
             favorite_seller_by_customer = {}
 
             for row in dataset:
-                # Crete a Game instance and set its properties
+                # Crete a  Customer instance and set its properties
                 favorite = Customer()
                 favorite.seller = row["fav_seller_name"]
 
