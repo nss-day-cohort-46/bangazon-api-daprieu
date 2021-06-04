@@ -4,7 +4,7 @@ from django.shortcuts import render
 from bangazon_reports.views import Connection
 
 
-def completedOrders_list(request):
+def completed_orders_list(request):
     """Function to build an HTML report of games by user"""
     if request.method == 'GET':
         # Connect to project database
@@ -58,7 +58,7 @@ def completedOrders_list(request):
         # Specify the Django template and provide data context
         template = 'orders/completed_orders_list.html'
         context = {
-            'completedOrders_list': list_of_completed_orders_by_id
+            'completed_orders_list': list_of_completed_orders_by_id
         }
 
         return render(request, template, context)
