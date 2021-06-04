@@ -1,4 +1,5 @@
 from .connection import Connection
+from .products.expensive_products import expensive_products_list
 from .products.inexpensive_products import inexpensive_products_list
 from .users.favorited_sellers_by_customer import customer_favorite_list
 from .orders.completed_orders import completed_orders_list
