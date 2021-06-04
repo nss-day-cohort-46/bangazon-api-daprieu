@@ -8,7 +8,7 @@
   <body>
     <h1>Customers Favorite Sellers</h1>
 
-    {% for customer in customerFavorite_list %}
+    {% for customer in customer_favorite_list %}
         <h2>{{ customer.customer_name }}</h2>
         <ol>
             {% for seller in customer.seller %}

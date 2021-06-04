@@ -3,7 +3,7 @@ from django.shortcuts import render
 from bangazon_reports.views import Connection
 
 
-def expensiveProducts_list(request):
+def expensive_products_list(request):
     """Function to build an HTML report of games by user"""
     if request.method == 'GET':
         # Connect to project database
@@ -37,7 +37,7 @@ def expensiveProducts_list(request):
         # Specify the Django template and provide data context
         template = 'products/list_of_expensive_products.html'
         context = {
-            'expensiveProducts_list': expensive_products_list
+            'expensive_products_list': expensive_products_list
         }
 
         return render(request, template, context)
