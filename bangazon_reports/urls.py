@@ -1,8 +1,9 @@
-from bangazon_reports.views.products.inexpensive_products import inexpensiveProducts_list
 from django.urls import path
-from .views import customerFavorite_list
+from .views import customer_favorite_list, completed_orders_list, incomplete_orders_list, inexpensive_products_list
 
 urlpatterns = [
-    path('reports/favoritesellers', customerFavorite_list),
-    path('reports/inexpensiveproducts', inexpensiveProducts_list),
+    path('reports/favoritesellers', customer_favorite_list),
+    path('reports/completedorders', completed_orders_list),
+    path('reports/incompleteorders', incomplete_orders_list),
+    path('reports/incompleteorders', inexpensive_products_list),
 ]
