@@ -4,7 +4,7 @@ from django.shortcuts import render
 from bangazon_reports.views import Connection
 
 
-def incompleteOrders_list(request):
+def incomplete_orders_list(request):
     """Function to build an HTML report of games by user"""
     if request.method == 'GET':
         # Connect to project database
@@ -66,7 +66,7 @@ def incompleteOrders_list(request):
         # Specify the Django template and provide data context
         template = 'orders/list_of_incomplete_orders.html'
         context = {
-            'incompleteOrders_list': list_of_incomplete_orders_by_id
+            'incomplete_orders_list': list_of_incomplete_orders_by_id
         }
 
         return render(request, template, context)

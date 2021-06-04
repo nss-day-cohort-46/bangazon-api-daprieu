@@ -5,7 +5,7 @@ from bangazonapi.models import Favorite
 from bangazon_reports.views import Connection
 
 
-def customerFavorite_list(request):
+def customer_favorite_list(request):
     """Function to build an HTML report of games by user"""
     if request.method == 'GET':
         # Connect to project database
@@ -61,7 +61,7 @@ def customerFavorite_list(request):
         # Specify the Django template and provide data context
         template = 'users/list_with_favorite_sellers.html'
         context = {
-            'customerFavorite_list': list_of_customers_with_favorite_sellers
+            'customer_favorite_list': list_of_customers_with_favorite_sellers
         }
 
         return render(request, template, context)
